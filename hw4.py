@@ -3,7 +3,7 @@ import numpy as np
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
-prob1_data = pd.DataFrame({'level' : np.repeat(['1520', '1600', '1680', '1760', '1840'], 6), 
+prob1_data = pd.DataFrame({'temperature' : np.repeat(['1520', '1600', '1680', '1760', '1840'], 6), 
                            'fail_time' : [1253, 1435, 1771, 4027, 5434, 5614,
                                           1190, 1286, 1550, 2125, 2557, 2845, 
                                           751, 837, 848, 1038, 1361, 1443,
@@ -16,8 +16,8 @@ prob1_data = pd.DataFrame({'level' : np.repeat(['1520', '1600', '1680', '1760', 
 # lambda ~ -1 which is about a reciprical trans
 #######
 
-logmeans = np.log(prob1_data.groupby('level').mean())
-logstd = np.log(prob1_data.groupby('level').std())
+logmeans = np.log(prob1_data.groupby('temperature').mean())
+logstd = np.log(prob1_data.groupby('temperature').std())
 
 logmeans = sm.add_constant(logmeans)
 prob1_model = sm.OLS(logstd, logmeans).fit()
@@ -60,11 +60,11 @@ xt = stats.boxcox(prob1_data.fail_time)
 # the null hypothesis and conclude that the variances are not equal
 #########
 
-g1=prob1_data.query('level =="1520"').fail_time
-g2=prob1_data.query('level =="1600"').fail_time
-g3=prob1_data.query('level =="1680"').fail_time
-g4=prob1_data.query('level =="1760"').fail_time
-g5=prob1_data.query('level =="1840"').fail_time
+g1=prob1_data.query('temperature =="1520"').fail_time
+g2=prob1_data.query('temperature =="1600"').fail_time
+g3=prob1_data.query('temperature =="1680"').fail_time
+g4=prob1_data.query('temperature =="1760"').fail_time
+g5=prob1_data.query('temperature =="1840"').fail_time
 stats.levene(g1, g2, g3, g4, g5, center='mean')
 
 #########
@@ -75,7 +75,7 @@ stats.levene(g1, g2, g3, g4, g5, center='mean')
 
 import matplotlib.pyplot as plt
 
-prob1_model3 = ols('fail_time ~ level', prob1_data).fit()
+prob1_model3 = ols('fail_time ~ temperature', prob1_data).fit()
 resid = prob1_model3.resid
 fitted = prob1_model3.fittedvalues
 
@@ -90,7 +90,7 @@ plt.show()
 # It seems pretty clear that as the mean failure time increases, so does the var
 #########
 
-prob1_data.boxplot(column = 'fail_time', by = 'level')
+prob1_data.boxplot(column = 'fail_time', by = 'temperature')
 plt.show()
 
 ##############
@@ -101,7 +101,7 @@ plt.show()
 #############
 from statsmodels.stats.multicomp import MultiComparison
 
-tukey_test = MultiComparison(prob1_data['fail_time'], prob1_data['level'])
+tukey_test = MultiComparison(prob1_data['fail_time'], prob1_data['temperature'])
 print tukey_test.tukeyhsd()
 
 ######
@@ -135,11 +135,11 @@ prob1_data['fail_time_recip'] = 1/prob1_data['fail_time']
 # in variance between groups
 #########
 
-g1_recip=prob1_data.query('level =="1520"').fail_time_recip
-g2_recip=prob1_data.query('level =="1600"').fail_time_recip
-g3_recip=prob1_data.query('level =="1680"').fail_time_recip
-g4_recip=prob1_data.query('level =="1760"').fail_time_recip
-g5_recip=prob1_data.query('level =="1840"').fail_time_recip
+g1_recip=prob1_data.query('temperature =="1520"').fail_time_recip
+g2_recip=prob1_data.query('temperature =="1600"').fail_time_recip
+g3_recip=prob1_data.query('temperature =="1680"').fail_time_recip
+g4_recip=prob1_data.query('temperature =="1760"').fail_time_recip
+g5_recip=prob1_data.query('temperature =="1840"').fail_time_recip
 stats.levene(g1_recip, g2_recip, g3_recip, g4_recip, g5_recip, center='mean')
 
 #########
@@ -148,7 +148,7 @@ stats.levene(g1_recip, g2_recip, g3_recip, g4_recip, g5_recip, center='mean')
 # In predicted value v residuals plot there is obvious fanning => no homo var
 #########
 
-prob1_model4 = ols('fail_time_recip ~ level', prob1_data).fit()
+prob1_model4 = ols('fail_time_recip ~ temperature', prob1_data).fit()
 resid_recip = prob1_model4.resid
 fitted_recip = prob1_model4.fittedvalues
 
@@ -164,10 +164,10 @@ plt.show()
 
 #########
 # Prob4d:
-# It appears that the variance remains constant across the different temp levels
+# It appears that the variance remains constant across the different temp temperatures
 #########
 
-prob1_data.boxplot(column = 'fail_time_recip', by = 'level')
+prob1_data.boxplot(column = 'fail_time_recip', by = 'temperature')
 plt.show()
 
 ##############
@@ -177,7 +177,7 @@ plt.show()
 # and the 1680 group is not sig different form the 1760 group but all other
 # group comparisons are considered sig diff
 #############
-tukey_test_recip = MultiComparison(prob1_data['fail_time_recip'], prob1_data['level'])
+tukey_test_recip = MultiComparison(prob1_data['fail_time_recip'], prob1_data['temperature'])
 print tukey_test_recip.tukeyhsd()
 
 ##############
@@ -187,8 +187,8 @@ print tukey_test_recip.tukeyhsd()
 # Looking at the original boxplot of the untransformed data, it appears that
 # there were actually more differences than what the Tukey comparisons
 # suggested. By taking the reciprical of the failure times we have 'tamed' the
-# increasing nature of spread which allows us to see more accurately differences
-# in our analysis
+# increasing nature of spread which allows us to see more accurately
+# differences in our analysis
 ##############
 
 #############
@@ -197,7 +197,7 @@ print tukey_test_recip.tukeyhsd()
 # for a cubic or quartic term
 #############
 
-prob1_model5 = ols('fail_time_recip ~ C(level, Poly)', prob1_data).fit()
+prob1_model5 = ols('fail_time_recip ~ C(temperature, Poly)', prob1_data).fit()
 
 ################################################################################
 # Prob7a:
