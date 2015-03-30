@@ -1,0 +1,473 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{hw5}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+
+    \section{STAT 541 HW5}
+
+
+
+    \subsection{Problem 2 (Problem 5.4 page 225)}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c}{\PYZsh{} setup}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{statsmodels.api} \PY{k+kn}{as} \PY{n+nn}{sm}
+         \PY{k+kn}{from} \PY{n+nn}{statsmodels.formula.api} \PY{k+kn}{import} \PY{n}{ols}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+         \PY{c}{\PYZsh{} from scipy import stats}
+         
+         \PY{n}{depth\PYZus{}levels} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{0.15}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{0.18}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{0.20}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{0.25}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{feed\PYZus{}levels} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{0.20}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{0.25}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{0.30}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{metal\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{depth}\PY{l+s}{\PYZsq{}} \PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n}{depth\PYZus{}levels}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,}
+                               \PY{l+s}{\PYZsq{}}\PY{l+s}{feed\PYZus{}rate}\PY{l+s}{\PYZsq{}} \PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n}{feed\PYZus{}levels}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{)}\PY{p}{,}
+                       \PY{l+s}{\PYZsq{}}\PY{l+s}{finish}\PY{l+s}{\PYZsq{}} \PY{p}{:} \PY{p}{[}\PY{l+m+mi}{74}\PY{p}{,} \PY{l+m+mi}{64}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{,} \PY{l+m+mi}{79}\PY{p}{,} \PY{l+m+mi}{68}\PY{p}{,} \PY{l+m+mi}{73}\PY{p}{,} \PY{l+m+mi}{82}\PY{p}{,} \PY{l+m+mi}{88}\PY{p}{,} \PY{l+m+mi}{92}\PY{p}{,} \PY{l+m+mi}{99}\PY{p}{,} \PY{l+m+mi}{104}\PY{p}{,} \PY{l+m+mi}{96}\PY{p}{,}
+                                 \PY{l+m+mi}{92}\PY{p}{,} \PY{l+m+mi}{86}\PY{p}{,} \PY{l+m+mi}{88}\PY{p}{,} \PY{l+m+mi}{98}\PY{p}{,} \PY{l+m+mi}{104}\PY{p}{,} \PY{l+m+mi}{88}\PY{p}{,} \PY{l+m+mi}{99}\PY{p}{,} \PY{l+m+mi}{108}\PY{p}{,} \PY{l+m+mi}{95}\PY{p}{,} \PY{l+m+mi}{104}\PY{p}{,} \PY{l+m+mi}{110}\PY{p}{,} \PY{l+m+mi}{99}\PY{p}{,}
+                                 \PY{l+m+mi}{99}\PY{p}{,} \PY{l+m+mi}{98}\PY{p}{,} \PY{l+m+mi}{102}\PY{p}{,} \PY{l+m+mi}{104}\PY{p}{,} \PY{l+m+mi}{99}\PY{p}{,} \PY{l+m+mi}{95}\PY{p}{,} \PY{l+m+mi}{108}\PY{p}{,} \PY{l+m+mi}{110}\PY{p}{,} \PY{l+m+mi}{99}\PY{p}{,} \PY{l+m+mi}{114}\PY{p}{,} \PY{l+m+mi}{111}\PY{p}{,} \PY{l+m+mi}{107}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Part a) initial analysis}
+
+
+    For the model
+\[ y_{ijk} = \beta_i + \tau_j + \gamma_{ij} + \epsilon_{ijk} \quad\quad 1 \leq i \leq 4,\; 1 \leq j \leq 3,\; 1 \leq k \leq 3\]
+\[ \epsilon_{ijk} \stackrel{iid}{\sim} N(0, \sigma^2) \]
+
+the hypotheses being tested are:
+\[ H_0: \gamma_{ij} = \gamma_{kl} \quad \mbox{ for all } \quad i, j, k, l \]
+\[ H_a: \gamma_{ij} \neq \gamma_{kl} \quad \mbox{ for some } \quad i, j, k, l \]
+
+And ultimately for main effects:
+\[ H_0: \beta_{i} = \beta_{j} \quad \mbox{ for all } \quad i, j \]
+\[ H_a: \beta_{i} \neq \beta_{j} \quad \mbox{ for some } \quad i, j \]
+
+\[ H_0: \tau_i = \tau_j \quad \mbox{ for all } \quad i, j \]
+\[ H_a: \tau_i \neq \tau_j \quad \mbox{ for some } \quad i, j \]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{metal\PYZus{}model} \PY{o}{=} \PY{n}{ols}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{finish \PYZti{} C(depth, Sum) * C(feed\PYZus{}rate, Sum)}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{metal\PYZus{}data}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
+         \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{anova\PYZus{}lm}\PY{p}{(}\PY{n}{metal\PYZus{}model}\PY{p}{,} \PY{n}{typ}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:}                                       sum\_sq  df          F        PR(>F)
+         C(depth, Sum)                    2125.111111   3  24.662798  1.652000e-07
+         C(feed\_rate, Sum)                3160.500000   2  55.018375  1.086046e-09
+         C(depth, Sum):C(feed\_rate, Sum)   557.055556   6   3.232431  1.797302e-02
+         Residual                          689.333333  24        NaN           NaN
+\end{Verbatim}
+        
+    It looks like both of the main effects and the interactions are
+significant at the \(\alpha = .05\) level as all p-values are pretty
+small. The p-value for the interaction, which we inspect first, is
+0.01797. The p-values for the depth and feed rate main effect terms are
+both less than .0001 indicating that all terms are significant. This is
+justified by the interaction plot generated below. We can see that as
+depth increases (along the x-axis) there is a general increase in
+finish, regardless of feed rate. As feed rate increases, the line
+representing the data goes up. Thus it seems that both main effects are
+significant. Moreover, as the lines are not parallel, we can assume that
+there is an interaction. It appears that as depth increases, feed rate's
+effect on finish isn't as large.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{by\PYZus{}feed\PYZus{}depth} \PY{o}{=} \PY{n}{metal\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{feed\PYZus{}rate}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{depth}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{test1} \PY{o}{=} \PY{n}{by\PYZus{}feed\PYZus{}depth}\PY{o}{.}\PY{n}{xs}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{0.20}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{level}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{feed\PYZus{}rate}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{test2} \PY{o}{=} \PY{n}{by\PYZus{}feed\PYZus{}depth}\PY{o}{.}\PY{n}{xs}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{0.25}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{level}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{feed\PYZus{}rate}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{test3} \PY{o}{=} \PY{n}{by\PYZus{}feed\PYZus{}depth}\PY{o}{.}\PY{n}{xs}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{0.30}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{level}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{feed\PYZus{}rate}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{test1}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{test1}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{r\PYZhy{}\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{test2}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{test2}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{b:}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{test2}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{test3}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{g\PYZhy{}.}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib.lines} \PY{k+kn}{as} \PY{n+nn}{mlines}
+         \PY{n}{red\PYZus{}line} \PY{o}{=} \PY{n}{mlines}\PY{o}{.}\PY{n}{Line2D}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{red}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{Feed rate = 0.20}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{blue\PYZus{}line} \PY{o}{=} \PY{n}{mlines}\PY{o}{.}\PY{n}{Line2D}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{blue}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{:}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{Feed rate = 0.25}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{green\PYZus{}line} \PY{o}{=} \PY{n}{mlines}\PY{o}{.}\PY{n}{Line2D}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{green}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}.}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{Feed rate = 0.30}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{handles}\PY{o}{=}\PY{p}{[}\PY{n}{red\PYZus{}line}\PY{p}{,} \PY{n}{blue\PYZus{}line}\PY{p}{,} \PY{n}{green\PYZus{}line}\PY{p}{]}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Interaction plot}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Depth}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Finish}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{hw5_files/hw5_7_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \subsubsection{Part b) Residual Plots}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} \PY{n}{inline}
+         
+         \PY{n}{resid} \PY{o}{=} \PY{n}{metal\PYZus{}model}\PY{o}{.}\PY{n}{resid}
+         \PY{n}{fitted} \PY{o}{=} \PY{n}{metal\PYZus{}model}\PY{o}{.}\PY{n}{fittedvalues}
+         
+         \PY{n}{sm}\PY{o}{.}\PY{n}{qqplot}\PY{p}{(}\PY{n}{resid}\PY{p}{,} \PY{n}{line}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{s}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Q\PYZhy{}Q Plot}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{hw5_files/hw5_9_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Because all the points appear to lie close to the diagonal line, there
+is no reason to suspect a problem with the residuals being normally
+distributed.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{fitted}\PY{p}{,} \PY{n}{resid}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Fitted Values}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Residuals}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Residual vs Fitted Values}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{hw5_files/hw5_11_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    It appears that there is no problem with homogeneity of variance as the
+residuals appear to be consistently spread out across the different
+fitted values.
+
+
+    \subsubsection{Part c) Estimates}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{Estimate}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{n}{metal\PYZus{}model}\PY{o}{.}\PY{n}{params}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:}                                                   Estimate
+         Intercept                                        94.333333
+         C(depth, Sum)[S.0.15]                            -9.555556
+         C(depth, Sum)[S.0.18]                            -4.555556
+         C(depth, Sum)[S.0.20]                             3.555556
+         C(feed\_rate, Sum)[S.0.20]                       -12.750000
+         C(feed\_rate, Sum)[S.0.25]                         3.250000
+         C(depth, Sum)[S.0.15]:C(feed\_rate, Sum)[S.0.20]  -6.027778
+         C(depth, Sum)[S.0.18]:C(feed\_rate, Sum)[S.0.20]  -3.694444
+         C(depth, Sum)[S.0.20]:C(feed\_rate, Sum)[S.0.20]   2.194444
+         C(depth, Sum)[S.0.15]:C(feed\_rate, Sum)[S.0.25]   0.638889
+         C(depth, Sum)[S.0.18]:C(feed\_rate, Sum)[S.0.25]   3.638889
+         C(depth, Sum)[S.0.20]:C(feed\_rate, Sum)[S.0.25]  -0.472222
+\end{Verbatim}
+        
+    It doesn't print out every coefficient estimate, but because it is
+assumed that the sum of effects is 0, it can be easily computed that the
+- depth = 0.25 estimate is
+\[ \beta_4 = -(-9.56 +-4.56 + 3.56) = 10.54 \] - feed rate = 0.30
+estimate is \[ \tau_3 = -(-12.75 + 3.25) = 9.5 \] - depth = 0.25, feed
+rate = 0.20 interaction estimate is
+\[ \gamma_{4, 1} = -(-6.03 + -3.69 + 2.19) = 7.53 \] - depth = 0.25,
+feed rate = 0.25 interaction estimate is
+\[ \gamma_{4, 2} = -(0.64 + 3.64 + -0.47) = -3.81 \] - depth = 0.15,
+feed rate = 0.30 interaction estimate is
+\[ \gamma_{1, 3} = -(-6.03 + 0.64) = 5.39 \] - depth = 0.18, feed rate =
+0.30 interaction estimate is
+\[ \gamma_{2, 3} = -(-3.69 + 3.64) = 0.05 \] - depth = 0.20, feed rate =
+0.30 interaction estimate is
+\[ \gamma_{3, 3} = -(2.19 + -0.47) = -1.72 \] - depth = 0.25, feed rate
+= 0.30 interaction estimate is
+\[ \gamma_{4, 3} = -(7.53 + -3.81) = -3.72 \]
+
+
+    \subsubsection{Part d) p-values}
+
+
+    P-values for the tests are given in Part a) above.
+
+
+    \subsection{Problem 3}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{tablet\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{tablet\PYZus{}type}\PY{l+s}{\PYZsq{}} \PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{MS}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{LP}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,}
+                                     \PY{l+s}{\PYZsq{}}\PY{l+s}{mesh\PYZus{}granule\PYZus{}size}\PY{l+s}{\PYZsq{}} \PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{12}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{16}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{20}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{,}
+                                     \PY{l+s}{\PYZsq{}}\PY{l+s}{disintegration\PYZus{}time}\PY{l+s}{\PYZsq{}} \PY{p}{:}
+                         \PY{p}{[}\PY{l+m+mf}{56.3}\PY{p}{,} \PY{l+m+mf}{61.1}\PY{p}{,} \PY{l+m+mf}{60.9}\PY{p}{,} \PY{l+m+mf}{53.8}\PY{p}{,} \PY{l+m+mf}{59.3}\PY{p}{,} \PY{l+m+mf}{56.7}\PY{p}{,} \PY{l+m+mf}{60.8}\PY{p}{,} \PY{l+m+mf}{55.9}\PY{p}{,} \PY{l+m+mf}{60.9}\PY{p}{,} \PY{l+m+mf}{55.1}\PY{p}{,}
+                          \PY{l+m+mf}{57.3}\PY{p}{,} \PY{l+m+mf}{61.8}\PY{p}{,} \PY{l+m+mf}{60.8}\PY{p}{,} \PY{l+m+mf}{63.5}\PY{p}{,} \PY{l+m+mf}{60.6}\PY{p}{,} \PY{l+m+mf}{58.7}\PY{p}{,} \PY{l+m+mf}{56.5}\PY{p}{,} \PY{l+m+mf}{54.1}\PY{p}{,} \PY{l+m+mf}{64.2}\PY{p}{,} \PY{l+m+mf}{60.8}\PY{p}{,}
+                          \PY{l+m+mf}{62.1}\PY{p}{,} \PY{l+m+mf}{63.9}\PY{p}{,} \PY{l+m+mf}{67.5}\PY{p}{,} \PY{l+m+mf}{65.7}\PY{p}{,} \PY{l+m+mf}{65.9}\PY{p}{,} \PY{l+m+mf}{61.9}\PY{p}{,} \PY{l+m+mf}{62.2}\PY{p}{,} \PY{l+m+mf}{65.2}\PY{p}{,} \PY{l+m+mf}{70.2}\PY{p}{,} \PY{l+m+mf}{65.7}\PY{p}{,}
+                          \PY{l+m+mf}{63.6}\PY{p}{,} \PY{l+m+mf}{62.0}\PY{p}{,} \PY{l+m+mf}{64.4}\PY{p}{,} \PY{l+m+mf}{63.1}\PY{p}{,} \PY{l+m+mf}{69.5}\PY{p}{,} \PY{l+m+mf}{68.6}\PY{p}{,} \PY{l+m+mf}{61.8}\PY{p}{,} \PY{l+m+mf}{72.1}\PY{p}{,} \PY{l+m+mf}{60.7}\PY{p}{,} \PY{l+m+mf}{67.1}\PY{p}{,}
+                          \PY{l+m+mf}{69.5}\PY{p}{,} \PY{l+m+mf}{69.8}\PY{p}{,} \PY{l+m+mf}{70.6}\PY{p}{,} \PY{l+m+mf}{68.6}\PY{p}{,} \PY{l+m+mf}{66.3}\PY{p}{,} \PY{l+m+mf}{64.5}\PY{p}{,} \PY{l+m+mf}{66.8}\PY{p}{,} \PY{l+m+mf}{66.1}\PY{p}{,} \PY{l+m+mf}{71.7}\PY{p}{,} \PY{l+m+mf}{66.5}\PY{p}{,}
+                          \PY{l+m+mf}{70.8}\PY{p}{,} \PY{l+m+mf}{74.7}\PY{p}{,} \PY{l+m+mf}{72.3}\PY{p}{,} \PY{l+m+mf}{73.6}\PY{p}{,} \PY{l+m+mf}{73.0}\PY{p}{,} \PY{l+m+mf}{67.1}\PY{p}{,} \PY{l+m+mf}{75.8}\PY{p}{,} \PY{l+m+mf}{72.7}\PY{p}{,} \PY{l+m+mf}{70.1}\PY{p}{,} \PY{l+m+mf}{68.0}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
+         
+         \PY{n}{tablet\PYZus{}model} \PY{o}{=} \PY{n}{ols}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{disintegration\PYZus{}time \PYZti{} tablet\PYZus{}type * mesh\PYZus{}granule\PYZus{}size}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{tablet\PYZus{}data}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
+         \PY{n}{anova\PYZus{}table} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{anova\PYZus{}lm}\PY{p}{(}\PY{n}{tablet\PYZus{}model}\PY{p}{,} \PY{n}{typ}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{anova\PYZus{}table}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:}                                     sum\_sq  df          F        PR(>F)
+         tablet\_type                      55.680667   1   6.346313  1.475516e-02
+         mesh\_granule\_size              1210.321000   2  68.974349  1.344720e-15
+         tablet\_type:mesh\_granule\_size    31.034333   2   1.768599  1.803085e-01
+         Residual                        473.780000  54        NaN           NaN
+\end{Verbatim}
+        
+
+    \subsection{Problem 4}
+
+
+    We have that
+\[ SS_A + SS_B + SS_{AB} = 55.68 + 1210.32 + 31.03 = 1297.03\] which is
+the sum of squares for the one-way ANOVA on the midterm. This makes
+sense as the amount of variability between different groups is still the
+same as in the single factor analysis. What has changes is the
+partitioning of the variability.
+
+
+    \subsection{Problem 5}
+
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  None of the sum of squares is zero
+\item
+  \(SS_A = 0\)
+\item
+  \(SS_{AB} = 0\)
+\item
+  \(SS_A = SS_{AB} = 0\)
+\item
+  \(SS_A = SS_B = 0\)
+\end{enumerate}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
